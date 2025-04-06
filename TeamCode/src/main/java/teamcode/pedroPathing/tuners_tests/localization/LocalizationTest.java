@@ -1,4 +1,4 @@
-package pedroPathing.tuners_tests.localization;
+package teamcode.pedroPathing.tuners_tests.localization;
 
 import static com.pedropathing.follower.FollowerConstants.leftFrontMotorName;
 import static com.pedropathing.follower.FollowerConstants.leftRearMotorName;
@@ -28,6 +28,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import pedroPathing.constants.*;
+import teamcode.pedroPathing.constants.FConstants;
+import teamcode.pedroPathing.constants.LConstants;
 
 /**
  * This is the LocalizationTest OpMode. This is basically just a simple mecanum drive attached to a
@@ -55,6 +57,7 @@ public class LocalizationTest extends OpMode {
      */
     @Override
     public void init() {
+        Constants.setConstants(FConstants.class, LConstants.class);
         poseUpdater = new PoseUpdater(hardwareMap, FConstants.class, LConstants.class);
 
         dashboardPoseTracker = new DashboardPoseTracker(poseUpdater);

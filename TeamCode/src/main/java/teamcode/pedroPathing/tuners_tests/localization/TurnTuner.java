@@ -1,9 +1,8 @@
-package pedroPathing.tuners_tests.localization;
+package teamcode.pedroPathing.tuners_tests.localization;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
-import com.pedropathing.util.Constants;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
@@ -12,8 +11,8 @@ import com.pedropathing.localization.PoseUpdater;
 import com.pedropathing.util.DashboardPoseTracker;
 import com.pedropathing.util.Drawing;
 
-import pedroPathing.constants.FConstants;
-import pedroPathing.constants.LConstants;
+import teamcode.pedroPathing.constants.FConstants;
+import teamcode.pedroPathing.constants.LConstants;
 
 /**
  * This is the TurnTuner OpMode. This tracks the turning movement of the robot and displays the

@@ -1,4 +1,4 @@
-package pedroPathing.tuners_tests.automatic;
+package teamcode.pedroPathing.tuners_tests.automatic;
 
 import static com.pedropathing.follower.FollowerConstants.leftFrontMotorName;
 import static com.pedropathing.follower.FollowerConstants.leftRearMotorName;
@@ -13,7 +13,6 @@ import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.pedropathing.follower.FollowerConstants;
-import com.pedropathing.util.Constants;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -29,12 +28,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import pedroPathing.constants.FConstants;
-import pedroPathing.constants.LConstants;
+import teamcode.pedroPathing.constants.FConstants;
+import teamcode.pedroPathing.constants.LConstants;
 
 /**
- * This is the ForwardZeroPowerAccelerationTuner autonomous follower OpMode. This runs the robot
- * forward until a specified velocity is achieved. Then, the robot cuts power to the motors, setting
+ * This is the LateralZeroPowerAccelerationTuner autonomous follower OpMode. This runs the robot
+ * to the right until a specified velocity is achieved. Then, the robot cuts power to the motors, setting
  * them to zero power. The deceleration, or negative acceleration, is then measured until the robot
  * stops. The accelerations across the entire time the robot is slowing down is then averaged and
  * that number is then printed. This is used to determine how the robot will decelerate in the
@@ -48,8 +47,8 @@ import pedroPathing.constants.LConstants;
  * @version 1.0, 3/13/2024
  */
 @Config
-@Autonomous(name = "Forward Zero Power Acceleration Tuner", group = "Automatic Tuners")
-public class ForwardZeroPowerAccelerationTuner extends OpMode {
+@Autonomous(name = "Lateral Zero Power Acceleration Tuner", group = "Automatic Tuners")
+public class LateralZeroPowerAccelerationTuner extends OpMode {
     private ArrayList<Double> accelerations = new ArrayList<>();
 
     private DcMotorEx leftFront;
@@ -100,10 +99,10 @@ public class ForwardZeroPowerAccelerationTuner extends OpMode {
         }
 
         telemetryA = new MultipleTelemetry(this.telemetry, FtcDashboard.getInstance().getTelemetry());
-        telemetryA.addLine("The robot will run forward until it reaches " + VELOCITY + " inches per second.");
+        telemetryA.addLine("The robot will run to the right until it reaches " + VELOCITY + " inches per second.");
         telemetryA.addLine("Then, it will cut power from the drivetrain and roll to a stop.");
         telemetryA.addLine("Make sure you have enough room.");
-        telemetryA.addLine("After stopping, the forward zero power acceleration (natural deceleration) will be displayed.");
+        telemetryA.addLine("After stopping, the lateral zero power acceleration (natural deceleration) will be displayed.");
         telemetryA.addLine("Press CROSS or A on game pad 1 to stop.");
         telemetryA.update();
     }
@@ -114,8 +113,8 @@ public class ForwardZeroPowerAccelerationTuner extends OpMode {
     @Override
     public void start() {
         leftFront.setPower(1);
-        leftRear.setPower(1);
-        rightFront.setPower(1);
+        leftRear.setPower(-1);
+        rightFront.setPower(-1);
         rightRear.setPower(1);
     }
 
@@ -136,7 +135,7 @@ public class ForwardZeroPowerAccelerationTuner extends OpMode {
         }
 
         poseUpdater.update();
-        Vector heading = new Vector(1.0, poseUpdater.getPose().getHeading());
+        Vector heading = new Vector(1.0, poseUpdater.getPose().getHeading() - Math.PI / 2);
         if (!end) {
             if (!stopping) {
                 if (MathFunctions.dotProduct(poseUpdater.getVelocity(), heading) > VELOCITY) {
@@ -163,7 +162,7 @@ public class ForwardZeroPowerAccelerationTuner extends OpMode {
             }
             average /= (double) accelerations.size();
 
-            telemetryA.addData("forward zero power acceleration (deceleration):", average);
+            telemetryA.addData("lateral zero power acceleration (deceleration):", average);
             telemetryA.update();
         }
     }
