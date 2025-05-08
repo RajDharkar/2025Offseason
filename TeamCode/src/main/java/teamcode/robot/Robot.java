@@ -21,21 +21,19 @@ import teamcode.utils.MyTelem;
 
 @Config
 public class Robot {
-    Follower follower;
-    Servo wristLeft, wristRight;
-    Servo turret;
+    public Follower follower;
+    public Servo wristLeft, wristRight;
+    public Servo turret;
     public Arm arm;
     public Servo swivel;
     public Servo c;
-    Claw claw;
+    public  Claw claw;
+    public DcMotor ext;
+    public BoxtubeExtension boxext;
+    public DcMotor pivot;
+    public BoxtubePivot boxtubePivot;
 
-    DcMotor ext;
-
-    BoxtubeExtension boxext;
-    DcMotor pivot;
-    BoxtubePivot boxtubePivot;
-
-    List<LynxModule> ar;
+    public List<LynxModule> ar;
     public Robot(HardwareMap hm, boolean auto){
         follower = new Follower(hm, FConstants.class, LConstants.class);
 
