@@ -10,6 +10,8 @@ public class PivotTo extends CommandBase {
     public PivotTo(Robot robot, int target){
         this.robot = robot;
         robot.boxtubePivot.setTargetPosition(target);
+
+        addRequirements(robot.boxtubePivot);
     }
 
     @Override

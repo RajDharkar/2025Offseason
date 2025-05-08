@@ -10,6 +10,8 @@ public class ExtendTo extends CommandBase {
     public ExtendTo(Robot robot, int target){
         this.robot = robot;
         robot.boxtubePivot.setTargetPosition(target);
+
+        addRequirements(robot.boxext);
     }
 
     @Override

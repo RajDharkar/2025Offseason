@@ -10,26 +10,27 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import java.util.List;
-import java.util.Observer;
 
 import teamcode.pedroPathing.constants.FConstants;
 import teamcode.pedroPathing.constants.LConstants;
-import teamcode.robot.subsystems.Arm;
+import teamcode.robot.subsystems.Turret;
 import teamcode.robot.subsystems.BoxtubeExtension;
 import teamcode.robot.subsystems.BoxtubePivot;
 import teamcode.robot.subsystems.Claw;
+import teamcode.robot.subsystems.Wrist;
 import teamcode.utils.MyTelem;
 
 @Config
 public class Robot {
     public Follower follower;
     public Servo wristLeft, wristRight;
-    public Servo turret;
+    public Servo turretS;
     public Servo swivel;
     public Servo c;
 
     public Claw claw;
-    public Arm arm;
+    public Turret turret;
+    public Wrist wrist;
 
     public DcMotorEx ext;
     public DcMotorEx pivot;
@@ -46,7 +47,7 @@ public class Robot {
 
         wristLeft.setDirection(Servo.Direction.REVERSE);
 
-        turret = hm.get(Servo.class, "turret");
+        turretS = hm.get(Servo.class, "turret");
 
         c = hm.get(Servo.class, "claw");
         swivel = hm.get(Servo.class, "swivel");
@@ -66,11 +67,12 @@ public class Robot {
         ext.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         claw = new Claw(c, swivel);
-        arm = new Arm(wristLeft, wristRight, turret);
+        turret = new Turret(turretS);
+        wrist = new Wrist(wristLeft, wristRight);
         boxext = new BoxtubeExtension(ext);
         boxtubePivot = new BoxtubePivot(pivot);
 
-        CommandScheduler.getInstance().registerSubsystem(claw, arm, boxext, boxtubePivot);
+        CommandScheduler.getInstance().registerSubsystem(claw, turret, wrist, boxext, boxtubePivot);
 
         ar = hm.getAll(LynxModule.class);
         for(LynxModule huh : ar){
