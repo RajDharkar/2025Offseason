@@ -8,7 +8,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 @Config
 public class BoxtubeExtension implements Subsystem {
     DcMotor ext;
-
     public static double p = 0, i = 0, d = 0, f = 0;
     PIDController extensionPID = new PIDController(p, i, d);
     public double targetPosition;

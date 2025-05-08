@@ -2,20 +2,13 @@ package teamcode.robot.subsystems;
 
 import com.arcrobotics.ftclib.command.Subsystem;
 import com.qualcomm.robotcore.hardware.Servo;
+import static teamcode.utils.constants.BotConstants.*;
 
 
 public class Arm implements Subsystem {
     public Servo wristLeft;
     public Servo wristRight;
     public Servo turret;
-
-    public static double wristIntake = 0;
-    public static double wristSpecDepo = 0;
-    public static double wristSample = 0;
-    public static double turretIntake = 0;
-    public static double turretSpecDepo = 0;
-    public static double turretSample = 0;
-
     public Arm(Servo wristLeft, Servo wristRight, Servo turret){
         this.wristLeft = wristLeft;
         this.wristRight = wristRight;
