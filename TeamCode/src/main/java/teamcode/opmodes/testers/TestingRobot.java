@@ -23,13 +23,13 @@ public class TestingRobot extends LinearOpMode {
 
         GamepadEx gp1 = new GamepadEx(gamepad1);
 
-        gp1.getGamepadButton(GamepadKeys.Button.A).whenPressed(
-            new SequentialCommandGroup(
-                    new InstantCommand(() -> robot.arm.setTurretState(Arm.TurretState.INTAKE)),
-                    new WaitCommand(1000),
-                    new InstantCommand(() -> robot.arm.setTurretState(Arm.TurretState.SPEC_DEPO))
-            )
-        );
+//        gp1.getGamepadButton(GamepadKeys.Button.A).whenPressed(
+//            new SequentialCommandGroup(
+//                    new InstantCommand(() -> robot.arm.setTurretState(Arm.TurretState.INTAKE)),
+//                    new WaitCommand(1000),
+//                    new InstantCommand(() -> robot.arm.setTurretState(Arm.TurretState.SPEC_DEPO))
+//            )
+//        );
 
         waitForStart();
 

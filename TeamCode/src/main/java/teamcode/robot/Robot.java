@@ -5,6 +5,7 @@ import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.pedropathing.follower.Follower;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -24,13 +25,16 @@ public class Robot {
     public Follower follower;
     public Servo wristLeft, wristRight;
     public Servo turret;
-    public Arm arm;
     public Servo swivel;
     public Servo c;
-    public  Claw claw;
-    public DcMotor ext;
+
+    public Claw claw;
+    public Arm arm;
+
+    public DcMotorEx ext;
+    public DcMotorEx pivot;
+
     public BoxtubeExtension boxext;
-    public DcMotor pivot;
     public BoxtubePivot boxtubePivot;
 
     public List<LynxModule> ar;
@@ -47,8 +51,8 @@ public class Robot {
         c = hm.get(Servo.class, "claw");
         swivel = hm.get(Servo.class, "swivel");
 
-        ext = hm.get(DcMotor.class, "extension");
-        pivot = hm.get(DcMotor.class, "pivot");
+        ext = hm.get(DcMotorEx.class, "extension");
+        pivot = hm.get(DcMotorEx.class, "pivot");
 
         pivot.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         ext.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
