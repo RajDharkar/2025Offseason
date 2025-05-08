@@ -34,7 +34,6 @@ public class TestingRobot extends LinearOpMode {
         waitForStart();
 
         while(opModeIsActive()){
-
             MyTelem.addData("HELLO WORLD", true);
             robot.update();
         }
