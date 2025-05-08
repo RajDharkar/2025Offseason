@@ -1,26 +1,25 @@
 package teamcode.robot.subsystems;
 
+import static teamcode.utils.constants.BotConstants.wristIntake;
+import static teamcode.utils.constants.BotConstants.wristSample;
+import static teamcode.utils.constants.BotConstants.wristSpecDepo;
+
 import com.arcrobotics.ftclib.command.Subsystem;
 import com.qualcomm.robotcore.hardware.Servo;
-import static teamcode.utils.constants.BotConstants.*;
 
-
-public class Arm implements Subsystem {
+public class Wrist implements Subsystem {
     public Servo wristLeft;
     public Servo wristRight;
-    public Servo turret;
-    public Arm(Servo wristLeft, Servo wristRight, Servo turret){
-        this.wristLeft = wristLeft;
-        this.wristRight = wristRight;
-        this.turret = turret;
-    }
-    public WristState wristState;
-    public TurretState turretState;
+
     public enum WristState{
         INTAKE, SPEC_DEPO, SAMPLE_DEPO
     }
-    public enum TurretState{
-        INTAKE, SPEC_DEPO, SAMPLE_DEPO
+
+    public WristState wristState;
+
+    public Wrist(Servo wristLeft, Servo wristRight){
+        this.wristLeft = wristLeft;
+        this.wristRight = wristRight;
     }
 
     public void setWristState(WristState state){
@@ -36,20 +35,6 @@ public class Arm implements Subsystem {
             case SAMPLE_DEPO:
                 wristRight.setPosition(wristSample);
                 wristLeft.setPosition(wristSample);
-                break;
-        }
-    }
-
-    public void setTurretState(TurretState state){
-        switch(state){
-            case INTAKE:
-                turret.setPosition(turretIntake);
-                break;
-            case SPEC_DEPO:
-                turret.setPosition(turretSpecDepo);
-                break;
-            case SAMPLE_DEPO:
-                turret.setPosition(turretSample);
                 break;
         }
     }
