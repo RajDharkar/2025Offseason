@@ -37,7 +37,7 @@ public class BoxtubeExtension implements Subsystem {
 
         ext.setPower(power);
         MyTelem.addData("Extension Pos", ext.getCurrentPosition());
-        MyTelem.addData("Extension Current Amps", ext.getCurrent(AMPS)); //check if a bulkread!!
+//        MyTelem.addData("Extension Current Amps", ext.getCurrent(AMPS)); //NOT A BULKREAD DONT TUNE WITH THIS ON C!!J!@04j)!J@4
     }
 
     public int getCurrentPosition(){

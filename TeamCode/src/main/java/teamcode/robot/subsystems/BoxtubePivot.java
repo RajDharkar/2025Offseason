@@ -36,7 +36,7 @@ public class BoxtubePivot implements Subsystem {
         pivot.setPower(power + Math.cos(angle));
 
         MyTelem.addData("Pivot Position", pos);
-        MyTelem.addData("Pivot AMPS", pivot.getCurrent(CurrentUnit.AMPS));
+//        MyTelem.addData("Pivot AMPS", pivot.getCurrent(CurrentUnit.AMPS)); //NOT A BULKREaD DonT TunE If ITS oN!
     }
 
     public int getCurrentPosition(){
